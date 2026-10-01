@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Reading Room &middot; Catalog</title>
+<meta name="description" content="Browse the catalog, preview any title in 3D, and borrow it with your name on the card.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Archivo:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/book3d.css">
+</head>
+<body>
+
+<header class="ledger-bar">
+  <div class="ledger-inner">
+    <a href="index.html" class="ledger-mark"><span class="mark-icon">&#128214;</span> The Reading Room <small>Est. catalog</small></a>
+    <nav class="ledger-nav">
+      <a href="index.html" class="on">Catalog</a>
+      <a href="shelf.html">My Shelf <span class="count" id="navLoanCount">0</span></a>
+      <a href="admin.html">Librarian Desk</a>
+    </nav>
+    <div class="ledger-actions">
+      <span class="ledger-status-pill"><span class="pulse-dot"></span> Open Shelves &middot; Live</span>
+      <button class="sound-toggle" id="soundToggle" aria-label="Toggle sound"></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-floating-elements" aria-hidden="true">
+      <svg class="float-elem fe-book1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <svg class="float-elem fe-book2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      <svg class="float-elem fe-circle1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="3 3"><circle cx="12" cy="12" r="9"/></svg>
+      <svg class="float-elem fe-geom1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="5" width="14" height="14" rx="2" transform="rotate(45 12 12)"/></svg>
+      <svg class="float-elem fe-sparkle" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6H22l-6.2 4.5 2.4 7.6-6.2-4.5-6.2 4.5 2.4-7.6L2 9.6h7.6z"/></svg>
+    </div>
+    <span class="hero-blob b1"></span>
+    <span class="hero-blob b2"></span>
+    <span class="hero-blob b3"></span>
+    <h1 id="heroTitle" data-page="catalog">Borrow something to read tonight.</h1>
+    <p class="hero-quote-rotator" id="heroQuoteRotator" data-page="catalog">Every title below can be opened as a real, page-turning book before you decide, with opening chapters you can read right now.</p>
+  </section>
+
+  <div class="controls">
+    <div class="controls-row">
+      <div class="search-field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <label for="searchInput" class="visually-hidden">Search the catalog by title, author or genre</label>
+        <input id="searchInput" type="text" placeholder="Search by title, author, genre, or year..." autocomplete="off">
+        <button type="button" class="search-clear-btn" id="clearSearch" aria-label="Clear search query" hidden>&times;</button>
+      </div>
+      <div class="sort-control">
+        <label for="sortBtn" id="sortLabel">Sort:</label>
+        <div class="custom-dropdown" id="sortDropdown">
+          <button type="button" class="sort-trigger" id="sortBtn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="sortLabel sortCurrentLabel">
+            <span class="sort-trigger-label" id="sortCurrentLabel">Featured</span>
+            <svg class="sort-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <ul class="sort-menu" role="listbox" aria-labelledby="sortLabel" tabindex="-1">
+            <li class="sort-option selected" role="option" data-value="default" aria-selected="true">
+              <span>Featured</span>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </li>
+            <li class="sort-option" role="option" data-value="title-asc" aria-selected="false">
+              <span>Title (A &rarr; Z)</span>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </li>
+            <li class="sort-option" role="option" data-value="title-desc" aria-selected="false">
+              <span>Title (Z &rarr; A)</span>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </li>
+            <li class="sort-option" role="option" data-value="year-desc" aria-selected="false">
+              <span>Year (Newest)</span>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </li>
+            <li class="sort-option" role="option" data-value="year-asc" aria-selected="false">
+              <span>Year (Oldest)</span>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </li>
+            <li class="sort-option" role="option" data-value="avail-first" aria-selected="false">
+              <span>Available First</span>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </li>
+          </ul>
+        </div>
+        <select id="sortSelect" class="sr-only" aria-hidden="true" tabindex="-1">
+          <option value="default">Featured</option>
+          <option value="title-asc">Title (A &rarr; Z)</option>
+          <option value="title-desc">Title (Z &rarr; A)</option>
+          <option value="year-desc">Year (Newest)</option>
+          <option value="year-asc">Year (Oldest)</option>
+          <option value="avail-first">Available First</option>
+        </select>
+      </div>
+    </div>
+    <div class="chips" id="genreChips"></div>
+  </div>
+
+  <h2 class="visually-hidden">Catalog results</h2>
+  <div class="shelf-meta" id="shelfMeta"></div>
+  <div class="catalog-grid" id="catalogGrid"></div>
+</main>
+
+<footer class="site-footer">
+  <span>The Reading Room &middot; a small catalog, built to be opened before it's borrowed.</span>
+  <button class="link" id="resetLibrary">Reset demo library</button>
+</footer>
+
+<div id="toast-region"></div>
+
+<script src="js/data.js"></script>
+<script src="js/genre-colors.js"></script>
+<script src="js/store.js"></script>
+<script src="js/sound.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/confetti.js"></script>
+<script src="js/art.js"></script>
+<script src="js/book3d.js"></script>
+<script src="js/common.js"></script>
+<script src="js/catalog.js"></script>
+<script>
+  document.getElementById("resetLibrary").addEventListener("click", () => {
+    if (confirm("Clear all borrowed books and start fresh? This only affects this browser's demo data.")) {
+      localStorage.removeItem("reading-room:loans");
+      window.dispatchEvent(new CustomEvent("reading-room:loans-changed"));
+      Toast.show("Demo library reset. Every copy is back on the shelf.");
+    }
+  });
+</script>
+</body>
+</html>

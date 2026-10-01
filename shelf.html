@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Reading Room &middot; My Shelf</title>
+<meta name="description" content="The books currently borrowed on this library card, with due dates and returns.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Archivo:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/book3d.css">
+</head>
+<body>
+
+<header class="ledger-bar">
+  <div class="ledger-inner">
+    <a href="index.html" class="ledger-mark"><span class="mark-icon">&#128214;</span> The Reading Room <small>Est. catalog</small></a>
+    <nav class="ledger-nav">
+      <a href="index.html">Catalog</a>
+      <a href="shelf.html" class="on">My Shelf <span class="count" id="navLoanCount">0</span></a>
+      <a href="admin.html">Librarian Desk</a>
+    </nav>
+    <div class="ledger-actions">
+      <span class="ledger-status-pill"><span class="pulse-dot"></span> Patron Desk &middot; Synced</span>
+      <button class="sound-toggle" id="soundToggle" aria-label="Toggle sound"></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-floating-elements" aria-hidden="true">
+      <svg class="float-elem fe-book1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <svg class="float-elem fe-book2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      <svg class="float-elem fe-circle1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="3 3"><circle cx="12" cy="12" r="9"/></svg>
+      <svg class="float-elem fe-geom1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="5" width="14" height="14" rx="2" transform="rotate(45 12 12)"/></svg>
+      <svg class="float-elem fe-sparkle" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6H22l-6.2 4.5 2.4 7.6-6.2-4.5-6.2 4.5 2.4-7.6L2 9.6h7.6z"/></svg>
+    </div>
+    <span class="hero-blob b1"></span>
+    <span class="hero-blob b2"></span>
+    <span class="hero-blob b3"></span>
+    <h1 id="heroTitle" data-page="shelf">What you have borrowed.</h1>
+    <p class="hero-quote-rotator" id="heroQuoteRotator" data-page="shelf">Everything checked out on this browser card, in the order it is due back. Renew your loan by two weeks, or return anytime.</p>
+  </section>
+
+  <div class="shelf-tabs" role="tablist" aria-label="Shelf sections">
+    <button type="button" class="shelf-tab-btn active" id="tabActiveLoans" role="tab" aria-selected="true" aria-controls="loanList">
+      Active Loans <span class="tab-badge" id="badgeActiveCount">0</span>
+    </button>
+    <button type="button" class="shelf-tab-btn" id="tabReadingHistory" role="tab" aria-selected="false" aria-controls="historyList">
+      Reading History <span class="tab-badge" id="badgeHistoryCount">0</span>
+    </button>
+  </div>
+
+  <h2 class="visually-hidden">Your loans</h2>
+  <div class="shelf-meta" id="shelfPageMeta"></div>
+  <div class="loan-list" id="loanList" role="tabpanel" aria-labelledby="tabActiveLoans"></div>
+  <div class="loan-list" id="historyList" role="tabpanel" aria-labelledby="tabReadingHistory" hidden></div>
+</main>
+
+<footer class="site-footer">
+  <span>The Reading Room &middot; a small catalog, built to be opened before it's borrowed.</span>
+  <a href="index.html" class="link" style="text-decoration:underline">Back to the catalog</a>
+</footer>
+
+<div id="toast-region"></div>
+
+<script src="js/data.js"></script>
+<script src="js/genre-colors.js"></script>
+<script src="js/store.js"></script>
+<script src="js/sound.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/confetti.js"></script>
+<script src="js/art.js"></script>
+<script src="js/book3d.js"></script>
+<script src="js/common.js"></script>
+<script src="js/shelf.js"></script>
+</body>
+</html>

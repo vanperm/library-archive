@@ -1,0 +1,7 @@
+.DS_Store
+
+# Presentation material: kept locally, not published with the site
+*.pptx
+PRESENTATION_GUIDE.md
+Presentation_Script_*.md
+online-library-flows.md
